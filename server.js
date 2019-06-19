@@ -20,10 +20,22 @@ app.use(bodyparser.urlencoded({extended:false}));
 app.use(passport.initialize());
 require('./config/passport')(passport);
 
+app.use((req,res,next)=>{
+    res.header("Access-Control-Allow-Origin","*");
+    res.header("Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    if (req.method==="OPTIONS")
+    {
+        res.header("Access-Control-Allow-Methods","PUT, POST, PATCH, DELETE, GET");
+        return res.status(200).json({});
+    }
+    next();
+});
+
 
 app.use('/api/uni',UniRoute);
 app.use('/api/user',UserRoute);
-app.use('/api/user',reviewRoute);
+app.use('/api/review',reviewRoute);
 
 
 app.listen(port, () => console.log(`App listening on port ${port}!`))

@@ -7,12 +7,12 @@ const User = require('../api/models/User');
 
 module.exports=(passport)=>{
     passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
-    User.findOne({email : jwt_payload.email}, function(err, person) {
+    User.findOne({email : jwt_payload.email}, function(err, user) {
         if (err) {
             return done(err, false);
         }
-        if (person) {
-            return done(null, person);
+        if (user) {
+            return done(null, user);
         } else {
             return done(null, false);
             

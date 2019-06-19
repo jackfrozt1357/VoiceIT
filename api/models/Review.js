@@ -13,14 +13,21 @@ const Reviewschema = mongoose.Schema({
         ref : 'Uni'
 
     },
-    comment :[{
+    comment :{
         type :String,
         required : true
-    }],
+    },
     date:{
         type :Date,
         default :Date.now
-    }
+    },
+    likes:[
+        {
+            type :mongoose.Schema.Types.ObjectId,
+            ref : 'User'
+
+        }
+    ]
 });
 
 

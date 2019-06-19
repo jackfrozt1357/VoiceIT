@@ -23,7 +23,7 @@ router.post('/',(req,res)=>{
                 if(err)
                 {
                     res.json({success:"false",msg:pe.Unknown});
-                }
+                     }
                 else
                 {
                     if(result.length>0)
@@ -39,6 +39,7 @@ router.post('/',(req,res)=>{
                                 else
                                 {   let names = (req.body.fullname).split(' ');
                                     const Newuser = new User({
+                                        
                                         email:req.body.email,
                                         password:hash,
                                         fname : names[0],
@@ -88,7 +89,7 @@ router.post('/login',(req,res)=>{
                         res.json({success:"false",msg:"Auth failed"});
                     }
                     else{
-                        jwt.sign({email:rdata.email,fname:rdata.fname,created :Date.now()},privatekey,{expiresIn:"10h"},(err,token)=>{
+                        jwt.sign({id:rdata._id,email:rdata.email,fname:rdata.fname,created :Date.now()},privatekey,{expiresIn:"10h"},(err,token)=>{
                             if(err)
                             {
                                 res.json({success:"false",msg:"Something went wrong"});
@@ -109,10 +110,7 @@ router.post('/login',(req,res)=>{
 //@route Get /api/user/
 //@desc get your details
 //@access public
-router.get('/',(req,res)=>{
-    
 
-});
 
 
 

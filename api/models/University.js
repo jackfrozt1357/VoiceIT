@@ -12,6 +12,12 @@ const Unischema = mongoose.Schema({
     Logo :{
         type : String
 
+    },
+    desc :{
+        type :String
+    },
+    website :{
+        type :String
     }
     
 

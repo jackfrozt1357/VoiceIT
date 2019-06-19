@@ -19,11 +19,20 @@ router.post('/',(req,res)=>
     });
 });
 
-router.get('/',(req,res)=>{
-    Uni.find().then(data=>res.json(data)).catch(err=>console.log(err
-        ));
+router.get('/_id',(req,res)=>{
+    Uni.find({_id:req.params._id})
+        .then((data)=>
+        {
+            res.json(data);
+        })
         
 });
 
 
 module.exports = router ;
+
+
+//check out spcific uni
+//get list of like 20 unis based on rank
+//rank i.e give points
+//down vote and upvote if possible
